@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS ADDUSER</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div ng-controller="maincontroller as  mainvm">
+    {{mainvm.title}}
+
+    <div class="container">
+
+    <div class="row">
+        <div class="'col-sm-6">
+            <form ng-submit="mainvm.addUser()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="name" class="form-control" id="name" placeholder="Enter your name" ng-model="mainvm.newUser.name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="prachijn0@gmail.com" ng-model="mainvm.newUser.email">
+                </div>
+                <div class="form-group">
+                    <label for="Comapany">Company</label>
+                    <input type="test" class="form-control" id="Comapany" placeholder="Xyz corp"ng-model="mainvm.newUser.company.name">
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="Enter your city here"ng-model="mainvm.newUser.address.city">
+                </div>
+                <div class="form-group">
+                    <label for="Phone">Phone</label>
+                    <input type="text" class="form-control" id="Phone" placeholder="435-374-7668"ng-model="mainvm.newUser.phone">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add User</button>
+            </form>
+
+        </div>
+        <div class="col-sm-6">
+            <br/>
+
+<input type="search" class="form-control" ng-model="mainvm.searchtext" placeholder="search">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Action</th>
+                <th>Edit</th>
+                <th>Update</th>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr ng-repeat="user in mainvm.users | filter:mainvm.searchtext">
+                <td><i ng-click="mainvm.deleteUser($index) " class="glyphicon glyphicon-remove"></i></td>
+                <td><i ng-click="mainvm.editSomeContact($index)" class="glyphicon glyphicon-pencil"></i></td>
+                <td><i ng-click="mainvm.updateuser($index)" class="glyphicon glyphicon-ok-sign"></i></td>
+                <td><span>{{user.name}}</span><input type="text" ng-model=user.name hidden=true /></td>
+                <td><span>{{user.company.name}}</span><input type="text" ng-model=user.company.name hidden=true /></td>
+                <td><span>{{user.email}}</span><input type="text" ng-model=user.email hidden=true /></td>
+                <td><span>{{user.address.city}}</span><input type="text" ng-model=user.address.city hidden=true /></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+    </div>
+<script src="https://code.angularjs.org/1.4.9/angular.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
